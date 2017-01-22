@@ -20,14 +20,14 @@ before_install:
   - sudo apt-get install --yes libudunits2-dev libproj-dev libgeos-dev libgdal-dev #libhdf5-serial-dev libhdf5-dev
   - cd /home/travis/build/jannes-m/RQGIS
   
-install:
-  - ./pkg-build.sh install_deps
+# install:
+#   - ./pkg-build.sh install_deps
 
-script:
+# script:
   # - ./pkg-build.sh run_tests
 
-after_failure:
-  - ./pkg-build.sh dump_logs
+# after_failure:
+#   - ./pkg-build.sh dump_logs
 
 notifications:
   email:
