@@ -1,7 +1,9 @@
 # R for travis: see documentation at https://docs.travis-ci.com/user/languages/r
 language: R		 
 sudo: required
-cache: packages	
+cache: 
+  - packages	
+  - $HOME/
 dist: trusty
     
 before_install:
@@ -23,6 +25,9 @@ notifications:
     
 after_success:
   - Rscript -e 'install.packages("devtools"); devtools::install_github("jimhester/covr"); covr::codecov(quiet = FALSE)'
+
+# inspect log of failing tests
+after_failure: "cat /home/travis/build/jannes-m/RQGIS/RQGIS.Rcheck/00check.log"
 
 
 
