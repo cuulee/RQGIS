@@ -27,6 +27,10 @@ before_install:
     - sudo apt-get install qgis-plugin-grass
 
     - sudo apt-get install qgis python-qgis saga
+    
+    # related to "cannot connect to X Server" error : http://askubuntu.com/questions/175611/cannot-connect-to-x-server-when-running-app-with-sudo
+    - xhost local:root
+    - sudo DISPLAY=$DISPLAY gedit /etc/profile
   
 notifications:
   email:
