@@ -31,7 +31,13 @@ before_install:
     # related to "cannot connect to X Server" error : http://askubuntu.com/questions/175611/cannot-connect-to-x-server-when-running-app-with-sudo
     #- xhost local:root
     #- sudo DISPLAY=$DISPLAY gedit /etc/profile
-    - sudo sh -c 'echo Defaults env_keep="DISPLAY XAUTHORITY" >> ~/visudo' 
+    # - sudo sh -c 'echo Defaults env_keep="DISPLAY XAUTHORITY" >> ~/visudo' 
+
+# imitate a X virtual display -> https://docs.travis-ci.com/user/gui-and-headless-browsers/#Using-xvfb-to-Run-Tests-That-Require-a-GUI
+before_script:
+  - "export DISPLAY=:99.0"
+  - "sh -e /etc/init.d/xvfb start"
+  - sleep 3 # give xvfb some time to start
   
 notifications:
   email:
